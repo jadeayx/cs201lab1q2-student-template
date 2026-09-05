@@ -77,14 +77,19 @@ public class SinglyLinkedList<E> {
     }
 
     public E removeLast(){
-        Node result = head;
-        Node current = head;
-        while(current != null){
-            current = current.getNext();
-            if(current.getNext() == tail){
-                result = current.getNext();
-                current.setNext(null);
+        Node result = tail;
+        
+
+        if (head == tail){
+            head = null;
+            tail = null;
+        } else{
+            Node current = head;
+            while(current.getNext() != tail){
+                current = current.getNext();
             }
+            current.setNext(null);
+            tail = current;
         }
         return (E) result.getElement();
     }
@@ -92,6 +97,7 @@ public class SinglyLinkedList<E> {
     public void reverse(){       
         Node prev = null;
         Node current = head;
+        tail = head
 
         while(current != null){
             Node next = current.getNext();
@@ -99,5 +105,6 @@ public class SinglyLinkedList<E> {
             prev = current;
             current = next;
         }
+        head = prev;
     }
 }
